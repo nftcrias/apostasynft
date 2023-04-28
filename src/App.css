@@ -1,5 +1,14 @@
+@font-face {
+  font-family: 'venice_classicmedium';
+  src: url('assets/font/veniceclassic-webfont.woff2') format('woff2'),
+       url('assets/font/veniceclassic-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .App {
   text-align: center;
+  font-family: "venice_classicmedium";
 }
 
 .App-logo {
