@@ -6,42 +6,167 @@
   font-style: normal;
 }
 
+html {
+  background: url("assets/images/background.gif") no-repeat, url("assets/images/background.png") center center;
+  background-repeat: no-repeat, repeat-y;
+  background-position: top, top;
+  background-size: 100% auto, 100% auto;
+  overflow-x: hidden;
+}
+
+/*#region APP */
+
 .App {
   text-align: center;
   font-family: "venice_classicmedium";
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.logoNormal {
+  width: 500px;
+  margin-top: 235px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.logoSmall {
+  margin-top: 30px;
+  width: 250px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.wallet {
+  color: #b41900;
+  font-size: 30px;
+}
+
+.introArea {
+  text-align: center;
+}
+
+.intro {
+  color: #b08b60;
+  font-size: 40px;
+  margin: 100px 20% 100px 20%;
+}
+
+.footer {
+  bottom: 0;
+  color: #835f56;
+  font-size: 35px;
+  margin: 5% 20% 5% 20%;
+  margin-top: -200px;
+}
+
+.button {
+  background: url("assets/images/button.png");
+  background-size: cover;
+  width: 436px;
+  height: 86px;
+  font-size: 60px;
+  line-height: 5rem; 
+  padding: 0px;
+  text-align: center;
+  color: #b08b60;
+  cursor: pointer;
+  margin: auto;
+}
+
+#statuesContainer {
+  margin-top: 200px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* #endregion */
+
+/* #region SELECT ORDER */
+
+.selectText {
+  color: #b08b60;
+  font-size: 50px;
+  text-align: center;
+  margin-top: 120px;
+  margin-bottom: 0px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.selectionContainer {
+  display: table;
+  width: 100%;
+  margin: 0px 0px 300px 0px;
 }
+
+.selectItem {
+  display: inline-block;
+  color: #b08b60;
+  font-size: 40px;
+  text-align: center;
+  margin: 0px 50px 0px 50px;
+}
+
+.selectImage {
+  width: 300px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.selectImage:hover {
+  opacity: 1;
+}
+
+/* #endregion */
+
+/* #region COLLECT BLOOD */
+
+.orderText {
+  color: #b08b60;
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  line-height: 0.1;
+}
+
+.contributionText {
+  padding: 0px;
+  margin-top: -20px;
+  color: #b41900;
+  font-size: 40px;
+  margin-bottom: 50px;
+}
+
+.buttonSmall {
+  background: url("assets/images/button.png");
+  background-size: cover;
+  width: 290px;
+  height: 57px;
+  font-size: 35px;
+  line-height: 3.5rem; 
+  padding: 0px;
+  text-align: center;
+  color: #b08b60;
+  cursor: pointer;
+  margin: auto;
+}
+
+.plusBlood {
+  color: #b08b60;
+  font-size: 22px;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.missionContainer {
+  margin: 20px;
+}
+
+.referralText {
+  color: #b08b60;
+  font-size: 40px;
+  margin: 50px 0px 0px 0px;
+}
+
+.referralLink {
+  color: #b41900;
+  font-size: 50px;
+  margin: 10px 0px 20px 0px;
+}
+
+/* #endregion */
