@@ -50,7 +50,7 @@ html {
   bottom: 0;
   color: #835f56;
   font-size: 35px;
-  margin: 5% 20% 5% 20%;
+  margin: 5% 14% 5% 14%;
   margin-top: -200px;
 }
 
@@ -146,8 +146,42 @@ html {
   margin: auto;
 }
 
+.buttonSmall2 {
+  background: url("assets/images/button2.png");
+  background-size: cover;
+  width: 290px;
+  height: 51px;
+  font-size: 25px;
+  line-height: 1.3rem; 
+  padding: 0px;
+  text-align: center;
+  color: #b08b60;
+  margin: auto;
+  padding-top: 6px;
+}
+
+.buttonSmall3 {
+  background: url("assets/images/button2.png");
+  background-size: cover;
+  width: 290px;
+  height: 57px;
+  font-size: 25px;
+  line-height: 3.5rem; 
+  padding: 0px;
+  text-align: center;
+  color: #b08b60;
+  margin: auto;
+}
+
 .plusBlood {
   color: #b08b60;
+  font-size: 22px;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.plusBloodDone {
+  color: #b41900;
   font-size: 22px;
   text-align: center;
   margin-top: 5px;
@@ -170,3 +204,25 @@ html {
 }
 
 /* #endregion */
+
+.playBtn {
+  background: url("assets/images/play.png");
+  background-size: cover;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  position: absolute;
+  margin-left: 95%;
+  margin-top: 1%;
+}
+
+.pauseBtn {
+  background: url("assets/images/pause.png");
+  background-size: cover;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  position: absolute;
+  margin-left: 95%;
+  margin-top: 1%;
+}

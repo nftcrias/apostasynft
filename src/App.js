@@ -4,6 +4,7 @@ import { ethers } from 'ethers';
 import SelectOrder from './components/selectorder';
 import RpgWindow from './components/rpgwindow';
 import CollectBlood from './components/collectblood';
+import Player from './components/player';
 import Logo from './assets/images/logo.png';
 import Statues from './assets/images/statues.gif';
 
@@ -45,6 +46,7 @@ function App() {
           </div>
         ) : (
           <div class="introArea">
+            <Player />
             <img class="logoNormal" src={Logo} alt="" />
             <p class="intro">Darkness takes over the forest and the only source of light is your torch. Dangerous creatures are on the prowl, but there's something more sinister in the shadows. You feel that something mysterious is hiding around you and you don't know what it is. Will you find the way out before this presence reveals itself?</p>
             <div class="button" onClick={connectWallet}>Connect Wallet</div>
