@@ -18,7 +18,7 @@ const CollectBlood = ({orderParam}) => {
         setOrder("Human");
         setReferralLink('https://apostasy.io/a13sSj');
         setContribution(1);
-        setMissions([1,0,0]);
+        setMissions([1,1,1]);
         setTwitter("@Example");
     },[]);
 
