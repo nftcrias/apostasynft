@@ -18,7 +18,7 @@ const CollectBlood = ({orderParam}) => {
         setOrder("Human");
         setReferralLink('https://apostasy.io/a13sSj');
         setContribution(1);
-        setMissions([1,1,1]);
+        setMissions([1,0,0]);
         setTwitter("@Example");
     },[]);
 
@@ -31,7 +31,7 @@ const CollectBlood = ({orderParam}) => {
     }
 
     async function Retweet() {
-
+        
     }
 
     function Copy() {
@@ -53,27 +53,27 @@ const CollectBlood = ({orderParam}) => {
             </div>
             
             <div class="missionContainer">
-                {missions[0] === 0 && <div class="buttonSmall" onClick={ConnectTwitter}>Connect Twitter</div>}
-                {missions[0] === 1 && <div class="buttonSmall2" >Connected as <br /> {twitter}</div>}
+                {missions[0] === 0 && <div class="buttonSmall" onClick={ConnectTwitter}><div class="buttonText">Connect Twitter</div></div>}
+                {missions[0] === 1 && <div class="buttonSmall2" ><div class="buttonText">Connected as <br /> {twitter}</div></div>}
                 <p class={plusBloodColor(0)}>+1 Blood</p>
             </div>
 
             <div class="missionContainer">
-                {missions[1] === 0 && <div class="buttonSmall" onClick={Follow}>Follow</div>}
-                {missions[1] === 1 && <div class="buttonSmall3" >Already Following</div>}
+                {missions[1] === 0 && <div class="buttonSmall" onClick={Follow}><div class="buttonText">Follow</div></div>}
+                {missions[1] === 1 && <div class="buttonSmall3" ><div class="buttonText">Already Following</div></div>}
                 <p class={plusBloodColor(1)}>+1 Blood</p>
             </div>
 
             <div class="missionContainer">
-                {missions[2] === 0 && <div class="buttonSmall" onClick={Retweet}>Retweet</div>}
-                {missions[2] === 1 && <div class="buttonSmall3">Retweeted</div>}
+                {missions[2] === 0 && <div class="buttonSmall" onClick={Retweet}><div class="buttonText">Retweet</div></div>}
+                {missions[2] === 1 && <div class="buttonSmall3"><div class="buttonText">Retweeted</div></div>}
                 <p class={plusBloodColor(2)}>+1 Blood</p>
             </div>
             
             <div class="referralBox">
                 <p class="referralText">Collect more blood:</p>
                 <p class="referralLink">{referralLink}</p>
-                <div class="buttonSmall" onClick={Copy}>Copy</div>
+                <div class="buttonSmall" onClick={Copy}><div class="buttonText">Copy</div></div>
                 <p class="plusBlood">+1 Blood per invite</p>
             </div>
             

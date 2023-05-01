@@ -11,7 +11,8 @@ import Statues from './assets/images/statues.gif';
 function App() {
 
   const [wallets, setWallets] = useState([]);
-  const [step, setStep] = useState(3);
+  
+  const [step, setStep] = useState(1);
 
   const isConnected = Boolean(wallets[0]);
 
@@ -33,11 +34,11 @@ function App() {
   return (
     <div className="App">
       <div>
-
+        <Player />
         {isConnected ? (
           <div>
             <div>
-              <p class="wallet">{wallets[0]}</p>
+              <div class="wallet">{wallets[0]}</div>
               <img class="logoSmall" src={Logo} alt=""/>
             </div>
             {step === 1 && <RpgWindow />}
@@ -46,10 +47,9 @@ function App() {
           </div>
         ) : (
           <div class="introArea">
-            <Player />
             <img class="logoNormal" src={Logo} alt="" />
             <p class="intro">Darkness takes over the forest and the only source of light is your torch. Dangerous creatures are on the prowl, but there's something more sinister in the shadows. You feel that something mysterious is hiding around you and you don't know what it is. Will you find the way out before this presence reveals itself?</p>
-            <div class="button" onClick={connectWallet}>Connect Wallet</div>
+            <div class="button" onClick={connectWallet}><div class="buttonText">Connect Wallet</div></div>
           </div>
         )}
 
