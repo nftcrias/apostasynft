@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const CollectBlood = ({orderParam}) => {
+const CollectBlood = ({wallets}) => {
 
     const [order, setOrder] = useState('');
 
@@ -18,7 +18,7 @@ const CollectBlood = ({orderParam}) => {
         setOrder("Human");
         setReferralLink('https://apostasy.io/a13sSj');
         setContribution(1);
-        setMissions([1,0,0]);
+        setMissions([0,0,0]);
         setTwitter("@Example");
     },[]);
 
@@ -31,7 +31,7 @@ const CollectBlood = ({orderParam}) => {
     }
 
     async function Retweet() {
-        
+
     }
 
     function Copy() {

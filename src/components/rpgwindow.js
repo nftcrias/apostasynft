@@ -4,7 +4,7 @@ import $ from 'jquery';
 import ChooseDialog from './choosedialog.js';
 import TypeDialog from './typedialog.js';
 
-const RpgWindow = ({}) => {
+const RpgWindow = ({wallets}) => {
 
     let defaultBoxId = 'rpgTextBox';
 
