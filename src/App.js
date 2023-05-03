@@ -10,20 +10,23 @@ import Statues from './assets/images/statues.gif';
 
 function App() {
 
-  const [wallets, setWallets] = useState([]);
-  const isConnected = Boolean(wallets[0]);
+  const [data, setData] = useState({
+    status: -1,
+    wallets: []
+  });
+  const isConnected = data.status > -1;
+  const wallets = data.wallets;
 
   async function connectWallet() {
     if (window.ethereum) {
-        const wlts = await window.ethereum.request({
+        var wallets = await window.ethereum.request({
             method: "eth_requestAccounts",
         });
-        setWallets(wlts);
-        await handle(wlts);
+        auth(wallets);
     }
   }
 
-  async function handle(wallets) {
+  async function auth(wallets) {
     if (wallets.length > 0) {
       var eth_address = wallets[0];
       var query = new URLSearchParams(window.location.search);
@@ -45,34 +48,42 @@ function App() {
       // Se for tudo ok
       if (auth.ok) {
         var json = await auth.json();
-        var data = json.data;
-        switch(data.status){
+        var nextData = json.data;
+        nextData.wallets = wallets;
+        setData(nextData);
+      }
+    }
+  };
+  
+  useEffect(async () => {
+    console.log(data);
+    if (isConnected) {
+      var ref = window.location.href;
+      console.log(ref);
+      if (ref == window.location.origin + "/" || ref == window.location.origin) {
+        switch(data.status) {
           // RPG
           case 0:
-            //history.push("/play");
+            window.location.href = "/play";
             break;
           // Order
           case 1:
-            //history.push("/order");
+            window.location.href = "/order";
             break;
           // Blood
           case 2:
-            //history.push("/collect");
+            window.location.href = "/collect";
             break;
         }
       }
     }
-  };
-
-  useEffect(async () => {
-    if (window.ethereum) {
-      const wlts = await window.ethereum.request({
+    else if (window.ethereum) {
+      var wallets = await window.ethereum.request({
           method: "eth_accounts",
       });
-      setWallets(wlts);
-      await handle(wlts);
+      auth(wallets);
     }
-  }, []);
+  }, [data]);
 
   return (
     <Router>

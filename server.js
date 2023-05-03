@@ -5,6 +5,13 @@ const serviceAccount = require("./fbase-key.json");
 
 const users = [];
 
+const routes = [
+  {route: "/", file: "index.html"},
+  {route: "/play", file: "index.html"},
+  {route: "/order", file: "index.html"},
+  {route: "/collect", file: "index.html"},
+];
+
 // Start firebase
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
@@ -20,17 +27,23 @@ const app = express();
 
 // Usar a pasta build
 app.use(express.static(path.join(__dirname, './build')));
+// Root de cada página
+const pageRoot = path.join(__dirname, './build');
 
-// Solicitação padrão
-app.get('/', async (req, res) => {
-  try {
-    // Enviar o index.html  
-    res.sendFile('index.html');
-  }
-  catch(e) {
-    console.error(e);
-  }
-});
+// Solicitação para cada página
+for(var i = 0; i < routes.length; i++) {
+  var item = routes[i];
+  app.get(item.route, async (req, res) => {
+    try {
+      // Enviar arquivo especificado 
+      res.sendFile(item.file, { root: pageRoot });
+    }
+    catch(e) {
+      console.error(e);
+      res.status(505);
+    }
+  });
+}
 
 // Autenticação
 app.post('/auth', async (req, res) => {
@@ -73,7 +86,7 @@ app.post('/auth', async (req, res) => {
     var json = {id: doc.id, data};
     res.json(json);
     res.end();
-});
+})
 
 const port = process.env.PORT ?? 3000;
 
