@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "server": "node server.js",
+    "server": "node app/server.js",
     "build": "react-scripts build",
     "release": "npm run build && copyfiles server.js app && copyfiles package.json app && copyfiles fbase-key.json app && copyfiles build/**/* app", 
     "test": "npm run build && npm run server",

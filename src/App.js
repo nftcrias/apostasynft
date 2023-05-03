@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './App.css';
-import { BrowserRouter as Router, Routes , Route } from 'react-router-dom';
-import { ethers } from 'ethers';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SelectOrder from './components/selectorder';
 import RpgWindow from './components/rpgwindow';
 import CollectBlood from './components/collectblood';
@@ -12,7 +11,6 @@ import Statues from './assets/images/statues.gif';
 function App() {
 
   const [wallets, setWallets] = useState([]);
-
   const isConnected = Boolean(wallets[0]);
 
   async function connectWallet() {
@@ -21,16 +19,58 @@ function App() {
             method: "eth_requestAccounts",
         });
         setWallets(wlts);
+        await handle(wlts);
     }
   }
 
+  async function handle(wallets) {
+    if (wallets.length > 0) {
+      var eth_address = wallets[0];
+      var query = new URLSearchParams(window.location.search);
+      var codex = query.get("c") ?? "";
+
+      // Criar cabeçalho
+      var headers = new Headers();
+      headers.append("eth_address", eth_address);
+      headers.append("codex", codex);
+
+      // Fazer a requisição POST
+      var auth = await fetch(window.location.protocol + "//" + window.location.host + "/auth", 
+      {
+        method: "POST",
+        headers, 
+        body: {}
+      });
+
+      // Se for tudo ok
+      if (auth.ok) {
+        var json = await auth.json();
+        var data = json.data;
+        switch(data.status){
+          // RPG
+          case 0:
+            //history.push("/play");
+            break;
+          // Order
+          case 1:
+            //history.push("/order");
+            break;
+          // Blood
+          case 2:
+            //history.push("/collect");
+            break;
+        }
+      }
+    }
+  };
+
   useEffect(async () => {
-    
     if (window.ethereum) {
       const wlts = await window.ethereum.request({
           method: "eth_accounts",
       });
       setWallets(wlts);
+      await handle(wlts);
     }
   }, []);
 
