@@ -34,15 +34,14 @@ function App() {
 
       // Criar cabeçalho
       var headers = new Headers();
-      headers.append("eth_address", eth_address);
-      headers.append("codex", codex);
+      headers.set("eth-address", eth_address);
+      headers.set("codex", codex);
 
       // Fazer a requisição POST
-      var auth = await fetch(window.location.protocol + "//" + window.location.host + "/auth", 
+      var auth = await fetch("http://localhost:8080/auth", 
       {
-        method: "POST",
-        headers, 
-        body: {}
+        method: "GET",
+        headers
       });
 
       // Se for tudo ok
@@ -55,7 +54,7 @@ function App() {
     }
   };
   
-  useEffect(async () => {
+  useEffect(() => {
     console.log(data);
     if (isConnected) {
       var ref = window.location.href;
@@ -78,10 +77,9 @@ function App() {
       }
     }
     else if (window.ethereum) {
-      var wallets = await window.ethereum.request({
+      window.ethereum.request({
           method: "eth_accounts",
-      });
-      auth(wallets);
+      }).then(auth);
     }
   }, [data]);
 
