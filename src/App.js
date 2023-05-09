@@ -8,24 +8,25 @@ import Player from './components/player';
 import Logo from './assets/images/logo.png';
 import Statues from './assets/images/statues.gif';
 
-function App() {
+function App() { 
 
-  const [data, setData] = useState({
-    status: -1,
-    wallets: []
+  const [user, setUser] = useState({
+    data: { status: -1 }
   });
-  const isConnected = data.status > -1;
-  const wallets = data.wallets;
+  const [status, setStatus] = useState(-1);
+
+  var isConnected = user.data.status > -1;
+  var wallets = user.wallets;
 
   async function connectWallet() {
     if (window.ethereum) {
-        var wallets = await window.ethereum.request({
+        window.ethereum.request({
             method: "eth_requestAccounts",
-        });
-        auth(wallets);
+        }).then(auth);
     }
   }
 
+  // Autentica o usuário
   async function auth(wallets) {
     if (wallets.length > 0) {
       var eth_address = wallets[0];
@@ -38,7 +39,7 @@ function App() {
       headers.set("codex", codex);
 
       // Fazer a requisição POST
-      var auth = await fetch("http://localhost:8080/auth", 
+      var auth = await fetch(process.env.REACT_APP_SERVER + "/auth", 
       {
         method: "GET",
         headers
@@ -47,31 +48,32 @@ function App() {
       // Se for tudo ok
       if (auth.ok) {
         var json = await auth.json();
-        var nextData = json.data;
-        nextData.wallets = wallets;
-        setData(nextData);
+        setUser(json.data);
       }
+
     }
   };
   
+  // 
   useEffect(() => {
-    console.log(data);
     if (isConnected) {
-      var ref = window.location.href;
-      console.log(ref);
-      if (ref == window.location.origin + "/" || ref == window.location.origin) {
-        switch(data.status) {
+      if (status != user.data.status) {
+        setStatus(user.data.status);
+        switch(user.data.status) {
           // RPG
           case 0:
-            window.location.href = "/play";
+            if (!window.location.href.endsWith("/play"))
+              window.location.href = "/play";
             break;
           // Order
           case 1:
-            window.location.href = "/order";
+            if (!window.location.href.endsWith("/order"))
+              window.location.href = "/order";
             break;
           // Blood
           case 2:
-            window.location.href = "/collect";
+            if (!window.location.href.endsWith("/collect"))
+              window.location.href = "/collect";
             break;
         }
       }
@@ -81,7 +83,7 @@ function App() {
           method: "eth_accounts",
       }).then(auth);
     }
-  }, [data]);
+  }, [user]);
 
   return (
     <Router>
@@ -91,13 +93,13 @@ function App() {
           {isConnected ? (
             <div>
               <div>
-                <div class="wallet">{wallets[0]}</div>
+                <div class="wallet">{user.data.eth_address}</div>
                 <img class="logoSmall" src={Logo} alt=""/>
               </div>
               <Routes>
-                <Route exact path='/play' element={<RpgWindow wallets={wallets} />}/>              
-                <Route exact path='/order' element={<SelectOrder wallets={wallets}/>}/>
-                <Route exact path='/collect' element={<CollectBlood wallets={wallets}/>} />
+                <Route exact path='/play' element={<RpgWindow user={user} userUpdate={setUser}/>}/>              
+                <Route exact path='/order' element={<SelectOrder user={user} userUpdate={setUser}/>}/>
+                <Route exact path='/collect' element={<CollectBlood user={user} userUpdate={setUser}/>} />
               </Routes>
             </div>
           ) : (

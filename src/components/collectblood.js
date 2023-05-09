@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const CollectBlood = ({wallets}) => {
+const CollectBlood = ({user, userUpdate = (u) => {}}) => {
 
     const [order, setOrder] = useState('');
 
@@ -15,8 +15,8 @@ const CollectBlood = ({wallets}) => {
     // run at start
     useEffect(()=> {
         // use this methods to update the infos in the page
-        setOrder("Human");
-        setReferralLink('https://apostasy.io/a13sSj');
+        setOrder(["Angel", "Human", "Demon"][user.data.order]);
+        setReferralLink('https://apostasy.io/?c=' + user.id);
         setContribution(1);
         setMissions([0,0,0]);
         setTwitter("@Example");
